@@ -3,13 +3,13 @@ version: '3.9'
 services:
   postgres:
     image: postgres:17.0-alpine3.20
+    restart: unless-stopped
     ports:
       - 5432:5432
     volumes:
       - ./etc/postgres/data:/var/lib/postgresql/data
-      - ./etc/postgres/initdb:/docker-entrypoint-initdb.d
+      - ./etc/postgres/initdb/create_tables.sql:/docker-entrypoint-initdb.d/create_tables.sql
     environment:
-      - POSTGRES_PASSWORD=password
-      - POSTGRES_USER=postgres
       - POSTGRES_DB=postgres
-    network_mode: host
+      - POSTGRES_USER=user
+      - POSTGRES_PASSWORD=password

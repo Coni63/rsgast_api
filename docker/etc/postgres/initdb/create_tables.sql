@@ -1,7 +1,11 @@
-CREATE TABLE IF NOT EXISTS users (
-    id SERIAL PRIMARY KEY,
-    username VARCHAR(100),
-    first_name VARCHAR(100),
-    last_name VARCHAR(100),
-    email VARCHAR(100),
+DROP SCHEMA IF EXISTS rsgast CASCADE;
+CREATE SCHEMA rsgast;
+
+CREATE TABLE rsgast.users (
+	id  BIGSERIAL PRIMARY KEY,
+	email       VARCHAR(200) NOT NULL,
+	first_name  VARCHAR(200) NOT NULL,
+	last_name   VARCHAR(200) NOT NULL,
+	username    VARCHAR(50) UNIQUE NOT NULL,
+	UNIQUE (username)
 );
